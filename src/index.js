@@ -1,5 +1,6 @@
 const express = require('express')
 
+const logger  = require('logger-line-number')
 
 const dust = require('dustjs-linkedin')
 const consolidate = require('consolidate')
@@ -16,8 +17,13 @@ app.engine('.dust' , consolidate.dust)
 app.use(express.static('public'))
 
 app.get("/" , (req , res)=>{
+   res.redirect('/students')
+})
 
-    const students = new Array(10).fill().map((el , index)=>(
+
+app.get("/students" , (req , res)=>{
+    logger.log(req.url)
+     const students = new Array(10).fill().map((el , index)=>(
         {
             name: faker.name.findName(),
             id : index+1,
@@ -30,36 +36,26 @@ app.get("/" , (req , res)=>{
 })
 
 
-app.get("/students" , (req , res)=>{
-    res.json({
-        students : new Array(10).fill().map((el , index)=>({
-            name:'virendra - '+index,
-            id : index+1,
-            rollnumber : Math.ceil((Math.random()*1000000000))
-            }))
-    })
+
+app.listen(port , ()=>{
+    logger.log("Application is listening at post " + port )
 })
 
 
 
-app.listen(port , ()=>{
-    console.log(`application is listing at ${port}`)
-}  )
-
-
-
 dust.helpers.isEven = function(chunk, context, bodies, params) {
+    logger.log("isEven Dust Helper")
     const {value} = params
-    console.log(params);
+    
    return value % 2 == 0 ;
 }
 dust.helpers.shortDescription = function(chunk, context, bodies, params) {
+    
+    logger.log("Short Description Helper")
     const {description} = params
-    console.log({chunk});
     const newDescription = description.length > 20 ? description.substring(0 , 20) : description 
     chunk.write(newDescription)
     chunk.write("....")
-
     return chunk;
 }
 
