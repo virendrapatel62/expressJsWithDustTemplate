@@ -1,0 +1,9 @@
+<head>
+    <title>
+        {+title}{/title}
+    </title>
+    
+    {> "layout/meta" /}
+
+    {> "layout/bootstrap" /}
+</head>

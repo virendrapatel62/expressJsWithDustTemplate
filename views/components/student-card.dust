@@ -1,0 +1,13 @@
+<div class="p-2">
+    <div class="card">
+        <img class="card-img-top" src="{profile}" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">{name}</h5>
+            <p class="card-text">
+                {description}
+            </p>
+            <a href="#" class="btn btn-primary">show More</a>
+        </div>
+    </div>
+
+</div>

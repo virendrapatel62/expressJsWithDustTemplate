@@ -1,0 +1,11 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+    {> "layout/head" /}
+<body>
+    {> "components/navbar" /}
+    <br>
+    {> "layout/body" /}
+</body>
+</html>

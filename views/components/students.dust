@@ -1,0 +1,10 @@
+<div class="row">
+
+    {#students}
+
+        <div class="col-3">
+            {> "components/student-card"  /}
+        </div>
+
+    {/students}
+</div>
