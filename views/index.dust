@@ -3,8 +3,8 @@
 {<title}Students{/title}
 
     {<body}
-
+   
         {> "components/students"/}
-
+        
     {/body}
     

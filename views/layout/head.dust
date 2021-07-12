@@ -2,7 +2,8 @@
     <title>
         {+title}{/title}
     </title>
-    
+    <link rel="stylesheet" href="/css/index.css">
+
     {> "layout/meta" /}
 
     {> "layout/bootstrap" /}

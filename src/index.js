@@ -1,5 +1,7 @@
 const express = require('express')
-const dust = require('express-dustjs')
+
+
+const dust = require('dustjs-linkedin')
 const consolidate = require('consolidate')
 const app = express()
 const faker = require('faker')
@@ -20,7 +22,7 @@ app.get("/" , (req , res)=>{
             name: faker.name.findName(),
             id : index+1,
             profile : faker.image.avatar() , 
-            description  :  faker.lorem.words(4), 
+            description  :  faker.lorem.words(100), 
             rollnumber : Math.ceil((Math.random()*1000000000))
         }))
         res.set('Cache-Control', 'public, max-age=0'); // one year
@@ -43,4 +45,21 @@ app.get("/students" , (req , res)=>{
 app.listen(port , ()=>{
     console.log(`application is listing at ${port}`)
 }  )
+
+
+
+dust.helpers.isEven = function(chunk, context, bodies, params) {
+    const {value} = params
+    console.log(params);
+   return value % 2 == 0 ;
+}
+dust.helpers.shortDescription = function(chunk, context, bodies, params) {
+    const {description} = params
+    console.log({chunk});
+    const newDescription = description.length > 20 ? description.substring(0 , 20) : description 
+    chunk.write(newDescription)
+    chunk.write("....")
+
+    return chunk;
+}
 

@@ -2,12 +2,15 @@
     <div class="card">
         <img class="card-img-top" src="{profile}" alt="Card image cap">
         <div class="card-body">
-            <h5 class="card-title">{name}</h5>
-            <p class="card-text">
-                {description}
+            <h5 
+                class="card-title 
+                {@isEven value=id } green {:else} yellow {/isEven}" >
+                {id}. {name}
+            </h5>
+            <p class="card-text" title="{description}">
+                {@shortDescription description=description} {/shortDescription}
             </p>
             <a href="#" class="btn btn-primary">show More</a>
         </div>
     </div>
-
 </div>
